@@ -1,9 +1,16 @@
 import psutil
 import sys
 
+RAM_THRESHOLD = 3221225472  # 3GB
+
 
 def check_memory():
-    print('virtual memory: {}'.format(psutil.virtual_memory()))
+    print('virtual memory: {}'.format(psutil.virtual_memory().available))
+    # Check available RAM in Bytes
+    virtual_memory = psutil.virtual_memory().available
+    if virtual_memory >= RAM_THRESHOLD:
+        # Reset mongo db from here
+        pass
     print('swap memory: {}'.format(psutil.swap_memory()))
 
 
