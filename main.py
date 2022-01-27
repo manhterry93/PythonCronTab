@@ -15,10 +15,14 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 
 def setup_cron_job():
     logging.info('--------Setup cron job---------')
-    temp_cron = crontab.CronTab(user=getpass.getuser())
+    logging.info("current user: {}".format(getpass.getuser()))
+    temp_cron = crontab.CronTab(user='manhpv')
     py_file = dir_path + '/psu.py'
-    job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
-    job.minute.every(5)
+    logging.info("pyfile: {}".format(py_file))
+    # job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
+    job = temp_cron.new(
+        command='python3 /home/manhpv/BackendProjects/CronJob/psu.py', comment="psu_job")
+    job.minute.every(1)
     temp_cron.write()
 
 
