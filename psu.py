@@ -6,7 +6,7 @@ import pymongo
 import logging
 import json
 
-RAM_THRESHOLD = 1073741824  # 1GB
+RAM_THRESHOLD = 1073741824*3  # 3GB
 # RAM_THRESHOLD = 10737418240  # 10GB
 
 

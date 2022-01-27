@@ -18,7 +18,7 @@ def setup_cron_job():
     temp_cron = crontab.CronTab(user=getpass.getuser())
     py_file = dir_path + '/psu.py'
     job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
-    job.hour.every(1)
+    job.minute.every(5)
     temp_cron.write()
 
 
