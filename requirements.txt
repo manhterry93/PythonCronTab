@@ -1,2 +1,3 @@
 python-crontab
 psutil==5.9.0
+pymongo==4.0.1

@@ -1,0 +1,5 @@
+{
+  "mongo_uri": "localhost:27018",
+  "docker-compose_file_path": "/home/manhpv/BackendProjects/MongoSharding/docker-compose-mongo-ser1-primary.yml",
+  "service_name": "shard01a"
+}
