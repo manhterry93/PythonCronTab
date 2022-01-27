@@ -13,12 +13,6 @@ import getpass
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    logging.info(f'Hi, {name}')  # Press Ctrl+8 to toggle the breakpoint.
-    logging.info('dir: ' + dir_path)
-
-
 def setup_cron_job():
     logging.info('--------Setup cron job---------')
     temp_cron = crontab.CronTab(user=getpass.getuser())
