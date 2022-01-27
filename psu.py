@@ -5,10 +5,11 @@ import sys
 import subprocess
 import datetime
 import pymongo
+from pymongo import ReadPreference
 import logging
 import json
 
-RAM_THRESHOLD = 1073741824 * 3  # 3GB
+RAM_THRESHOLD = 1073741824 * 5368709120  # 5GB
 # RAM_THRESHOLD = 10737418240  # 10GB
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -90,7 +91,7 @@ def check_mongo_status():
 
 def reset_mongo_docker():
     try:
-        logging.info("Resetting1 mongo docker...")
+        logging.info("Resetting mongo docker...")
         subprocess.run(["docker-compose", "-f",
                         config['docker-compose_file_path'], "restart",
                         config['service_name']])
@@ -107,7 +108,7 @@ def load_config():
     logging.info("Loading config...")
     global config
     try:
-        file = open("config.json", "r")
+        file = open("{}/config.json".format(dir_path), "r")
         config_str = file.read()
         config = json.loads(config_str)
         file.close()
