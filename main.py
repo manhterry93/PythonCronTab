@@ -19,9 +19,7 @@ def setup_cron_job():
     temp_cron = crontab.CronTab(user='manhpv')
     py_file = dir_path + '/psu.py'
     logging.info("pyfile: {}".format(py_file))
-    # job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
-    job = temp_cron.new(
-        command='python3 /home/manhpv/BackendProjects/CronJob/psu.py', comment="psu_job")
+    job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
     job.minute.every(1)
     temp_cron.write()
 
