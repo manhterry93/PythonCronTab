@@ -1,3 +1,5 @@
+import os
+
 import psutil
 import sys
 import subprocess
@@ -6,10 +8,10 @@ import pymongo
 import logging
 import json
 
-RAM_THRESHOLD = 1073741824*3  # 3GB
+RAM_THRESHOLD = 1073741824 * 3  # 3GB
 # RAM_THRESHOLD = 10737418240  # 10GB
 
-
+dir_path = os.path.dirname(os.path.realpath(__file__))
 config = {}
 
 
@@ -118,7 +120,7 @@ def load_config():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    logging.basicConfig(filename='psu.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+    logging.basicConfig(filename='{}/psu.log'.format(dir_path), level=logging.DEBUG, format='%(asctime)s %(message)s')
     check_memory()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
