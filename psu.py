@@ -92,7 +92,8 @@ def check_mongo_status():
 def reset_mongo_docker():
     try:
         logging.info("Resetting mongo docker...")
-        subprocess.run(["docker-compose", "-f",
+        # We will replace first param by result of command: whereis docker-compose
+        subprocess.run(["/usr/local/bin/docker-compose", "-f",
                         config['docker-compose_file_path'], "restart",
                         config['service_name']])
     except Exception as e:
