@@ -9,8 +9,8 @@ from pymongo import ReadPreference
 import logging
 import json
 
-RAM_THRESHOLD = 1073741824 * 5368709120  # 5GB
-# RAM_THRESHOLD = 10737418240  # 10GB
+RAM_THRESHOLD = 1073741824   # 1GB
+RAM_THRESHOLD = 10737418240  # 10GB
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 config = {}
@@ -80,10 +80,10 @@ def check_mongo_status():
     try:
         client = pymongo.MongoClient(config['mongo_uri'])
         client_role = client.read_preference.name
-        if client_role.lower() == "primary":
-            logging.info("Mongo client is PRIMARY  ==> Reset")
-            client.close()
-            reset_mongo_docker()
+        # if client_role.lower() == "primary":
+        #     logging.info("Mongo client is PRIMARY  ==> Reset")
+        client.close()
+        reset_mongo_docker()
     except Exception as e:
         logging.info("Check mongo status failed with error")
         logging.error(e)

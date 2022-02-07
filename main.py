@@ -16,7 +16,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 def setup_cron_job():
     logging.info('--------Setup cron job---------')
     logging.info("current user: {}".format(getpass.getuser()))
-    temp_cron = crontab.CronTab(user='manhpv')
+    temp_cron = crontab.CronTab(user=getpass.getuser())
     py_file = dir_path + '/psu.py'
     logging.info("pyfile: {}".format(py_file))
     job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
@@ -40,11 +40,14 @@ def check_job():
     :return: Job exist or not (with comment="psu_job")
     """
     logging.info('---------Check job--------')
+    print('---------Check job--------')
     my_crons = crontab.CronTab(user=getpass.getuser())
     exist = False
     for job in my_crons:
         if job.comment == 'psu_job':
             exist = True
+        print(job)
+        print('job valid: {}'.format(job.is_valid()))
         logging.info(job)
         logging.info('job valid: {}'.format(job.is_valid()))
     return exist
@@ -63,7 +66,7 @@ def remove_all():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    logging.basicConfig(filename='cron_job.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
+    logging.basicConfig(filename=dir_path + '/cron_job.log', level=logging.DEBUG, format='%(asctime)s %(message)s')
     args = sys.argv
     # setup_cron_job()
     # disable_job()
