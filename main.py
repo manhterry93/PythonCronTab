@@ -20,7 +20,7 @@ def setup_cron_job():
     py_file = dir_path + '/psu.py'
     logging.info("pyfile: {}".format(py_file))
     job = temp_cron.new(command='python3 {}'.format(py_file), comment="psu_job")
-    job.minute.every(1)
+    job.hour.every(1)
     temp_cron.write()
 
 
