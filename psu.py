@@ -10,7 +10,7 @@ import logging
 import json
 
 RAM_THRESHOLD = 1073741824   # 1GB
-RAM_THRESHOLD = 10737418240  # 10GB
+# RAM_THRESHOLD = 10737418240  # 10GB
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 config = {}
